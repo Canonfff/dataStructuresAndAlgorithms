@@ -17,7 +17,11 @@ import java.util.Map;
  * @Description: SQL建造者
  */
 public abstract class SqlBuilder {
-    abstract String build(Class clazz, Map<String, Object> param);
+    protected static String table = "table";
+    protected static String field = "field";
+
+
+    public abstract Sql build(Class clazz, Map<String, Object> param);
 
     abstract ActionEnum getAction();
 
@@ -84,5 +88,48 @@ public abstract class SqlBuilder {
             }
             throw new IllegalArgumentException("class can not fouond primaryKey annotation");
         }
+    }
+
+    /**
+     * 获取默认的SQL
+     * @return
+     */
+    protected String getDefaultSql() {
+        return getAction().value;
+    }
+
+    /**
+     * 获取默认的SQL
+     * @param clazz
+     * @return
+     */
+    protected String getDefaultSql(Class clazz) {
+        return getDefaultSql().replaceAll(table,getTableName(clazz));
+    }
+
+    /**
+     * 获取字段,不含主键(逗号分割)
+     * @param clazz
+     * @return
+     */
+    protected String getField(Class clazz) {
+        StringBuffer sb = new StringBuffer();
+        List<String> fields = getFields(clazz);
+        for (String s : fields) {
+            sb.append(s);
+            sb.append(",");
+        }
+        sb.deleteCharAt(sb.lastIndexOf(","));
+        return sb.toString();
+    }
+
+    /**
+     * 获取所有字段(逗号分割)
+     * @param clazz
+     * @return
+     */
+    protected String getAllField(Class clazz) {
+        String field = getField(clazz);
+        return field += (","+getPrimaryKey(clazz));
     }
 }

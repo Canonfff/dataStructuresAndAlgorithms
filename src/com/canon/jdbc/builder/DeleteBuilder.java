@@ -12,7 +12,7 @@ import java.util.Map;
  */
 public class DeleteBuilder extends SqlBuilder {
     @Override
-    String build(Class clazz, Map<String, Object> param) {
+    public Sql build(Class clazz, Map<String, Object> param) {
         return null;
     }
 

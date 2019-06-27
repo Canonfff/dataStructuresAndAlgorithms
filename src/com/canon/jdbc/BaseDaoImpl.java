@@ -1,6 +1,8 @@
 package com.canon.jdbc;
 
-import javax.annotation.Resource;
+import com.canon.jdbc.builder.Sql;
+import com.canon.jdbc.handler.SqlHandler;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
@@ -16,7 +18,9 @@ import java.util.Map;
  * @Description:
  */
 public class BaseDaoImpl<T> implements BaseDao<T> {
-    @Resource
+
+    private SqlHandler<T> sqlHandler = new SqlHandler<T>();
+
     private Class<T> entityClass;
 
     public BaseDaoImpl() {
@@ -28,7 +32,9 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 
     @Override
     public int save(T t) {
-        buildSaveSql(ActionEnum.insert, t);
+        // buildSaveSql(ActionEnum.insert, t);
+        Sql save = sqlHandler.save(t);
+        System.out.println(save);
         return 0;
     }
 

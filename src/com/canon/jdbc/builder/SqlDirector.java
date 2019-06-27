@@ -11,10 +11,10 @@ import java.util.Map;
  * @Description: SQL建造指挥者
  */
 public class SqlDirector {
+    // @Autowired(required = false) 使用spring自动注入的方式
+    private SqlBuilder[] builders = new  SqlBuilder[] {new InsertBuilder(),new DeleteBuilder(),new UpdateBuilder(),new SelectBuilder()};
 
-    private SqlBuilder[] builders = new  SqlBuilder[] {};
-
-    public String construct(ActionEnum action, Class clazz, Map<String, Object> param) {
+    public Sql construct(ActionEnum action, Class clazz, Map<String, Object> param) {
         return getBuilder(action).build(clazz,param);
     }
 

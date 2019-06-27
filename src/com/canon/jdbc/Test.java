@@ -20,6 +20,7 @@ public class Test {
         entry.setBirthday(new Date());
         entry.setId("1");
         baseDao.save(entry);
+        if (true) return;
         System.out.println();
         baseDao.update(entry);
         System.out.println();
