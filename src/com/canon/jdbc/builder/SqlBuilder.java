@@ -24,20 +24,11 @@ public abstract class SqlBuilder {
 
     /**
      * 获取默认的SQL
-     * @return
-     */
-    protected String getDefaultSql() {
-        return getAction().value;
-    }
-
-    /**
-     * 获取默认的SQL
      * @param clazz
      * @return
      */
     protected String getDefaultSql(Class clazz) {
-        return getDefaultSql().replaceAll(table, SqlUtil.getTableName(clazz));
+        return getAction().value.replaceAll(table, SqlUtil.getTableName(clazz));
     }
-
 
 }
