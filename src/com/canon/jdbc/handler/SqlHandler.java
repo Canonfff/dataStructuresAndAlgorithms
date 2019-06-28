@@ -49,7 +49,7 @@ public class SqlHandler<T> {
     }
 
     public Sql delete(T t) {
-        return execute(ActionEnum.delete, t.getClass(), getParam(t));
+        return execute(ActionEnum.delete, t.getClass(), getPrimaryParam(t));
     }
 
     /**

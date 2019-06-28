@@ -21,6 +21,7 @@ public class DeleteBuilder extends SqlBuilder {
             sb.append(entry.getKey() + "=? and ");
             params[count++] = entry.getValue();
         }
+        sb.delete(sb.lastIndexOf("and"),sb.length());
         sql += sb.toString();
         return new Sql(sql, params);
     }
