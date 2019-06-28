@@ -13,6 +13,12 @@ import java.util.Map;
 public class UpdateBuilder extends SqlBuilder {
     @Override
     public Sql build(Class clazz, Map<String, Object> param) {
+        String sql = getDefaultSql(clazz);
+        StringBuffer sb = new StringBuffer();
+
+        for (Map.Entry<String, Object> entry : param.entrySet()) {
+
+        }
         return null;
     }
 

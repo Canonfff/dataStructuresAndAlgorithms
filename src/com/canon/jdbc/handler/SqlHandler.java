@@ -4,6 +4,7 @@ import com.canon.jdbc.ActionEnum;
 import com.canon.jdbc.AnnotationEnum;
 import com.canon.jdbc.builder.Sql;
 import com.canon.jdbc.builder.SqlDirector;
+import com.canon.jdbc.utils.SqlUtil;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;
@@ -28,6 +29,22 @@ public class SqlHandler<T> {
     public Sql save(T t) {
         return execute(ActionEnum.insert, t.getClass(), getParam(t));
     }
+
+    public Sql selectByPrimaryKey(Class clazz, Object o) {
+        Map<String, Object> param = new HashMap<String, Object>(1);
+        String primaryKey = SqlUtil.getPrimaryKey(clazz);
+        param.put(primaryKey, o);
+        return execute(ActionEnum.select, clazz, param);
+    }
+
+    public Sql selectByParam(Class clazz, Map<String, Object> param) {
+        return execute(ActionEnum.select, clazz, param);
+    }
+
+    public Sql update(T t) {
+        return execute(ActionEnum.update, t.getClass(), getParam(t));
+    }
+
 
     /**
      * 获取参数
