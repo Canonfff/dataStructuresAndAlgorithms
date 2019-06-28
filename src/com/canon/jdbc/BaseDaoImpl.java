@@ -42,12 +42,14 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
     public int update(T t) {
         //buildUpdateSql(ActionEnum.update, t);
         Sql sql = sqlHandler.update(t);
+        System.err.println(sql);
         return 0;
     }
 
     @Override
     public int delete(T t) {
         buildDeleteSql(ActionEnum.delete, t);
+        sqlHandler.delete(t);
         return 0;
     }
 
@@ -56,6 +58,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
     public T selectByPrimaryKey(Object o) {
         Sql sql = sqlHandler.selectByPrimaryKey(entityClass, o);
         //buildSelectSql(ActionEnum.select, o);
+        System.err.println(sql);
         return null;
     }
 
@@ -63,6 +66,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
     public List<T> selectByParam(Map<String, Object> map) {
         Sql sql = sqlHandler.selectByParam(entityClass, map);
         // buildSelectParamSql(ActionEnum.select, map);
+        System.err.println(sql);
         return null;
     }
 

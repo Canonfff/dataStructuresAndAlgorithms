@@ -30,7 +30,7 @@ public class InsertBuilder extends SqlBuilder {
         sb2.deleteCharAt(sb2.lastIndexOf(","));
         sb.append(")");
         sb2.append(")");
-        sql += sb.toString() + sb2.toString();
+        sql += sb.append(sb2).toString();
         return new Sql(sql,params);
     }
 

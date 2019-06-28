@@ -2,6 +2,7 @@ package com.canon.jdbc.handler;
 
 import com.canon.jdbc.ActionEnum;
 import com.canon.jdbc.AnnotationEnum;
+import com.canon.jdbc.PrimaryKey;
 import com.canon.jdbc.builder.Sql;
 import com.canon.jdbc.builder.SqlDirector;
 import com.canon.jdbc.utils.SqlUtil;
@@ -42,12 +43,17 @@ public class SqlHandler<T> {
     }
 
     public Sql update(T t) {
-        return execute(ActionEnum.update, t.getClass(), getParam(t));
+        Map<String, Object> param = getParam(t);
+        param.putAll(getPrimaryParam(t));
+        return execute(ActionEnum.update, t.getClass(), param);
     }
 
+    public Sql delete(T t) {
+        return execute(ActionEnum.delete, t.getClass(), getParam(t));
+    }
 
     /**
-     * 获取参数
+     * 获取参数(不含主键)
      * @param t
      * @return
      */
@@ -73,4 +79,33 @@ public class SqlHandler<T> {
         }
         return map;
     }
+
+    /**
+     * 获取参数(只含主键)
+     * @param t
+     * @return
+     */
+    private Map<String, Object> getPrimaryParam(T t) {
+        Field[] fields = t.getClass().getDeclaredFields();
+        // key 数据库字段名 | value 字段值
+        Map<String, Object> map = new HashMap<String, Object>();
+        if (fields != null) {
+            try {
+                for (Field field : fields) {
+                    field.setAccessible(true);
+                    PrimaryKey pAnnotation = (PrimaryKey) field.getAnnotation(AnnotationEnum.primaryKey.clazz);
+                    if (pAnnotation != null) {
+                        String anntationV = pAnnotation.value();
+                        String fieldName = (anntationV == null || "".equals(anntationV.trim())) ? field.getName() : anntationV;
+                        Object value = field.get(t);
+                        map.put(fieldName, value);
+                    }
+                }
+            } catch (Exception e) {
+                throw new IllegalArgumentException("获取字段信息失败", e);
+            }
+        }
+        return map;
+    }
+
 }
