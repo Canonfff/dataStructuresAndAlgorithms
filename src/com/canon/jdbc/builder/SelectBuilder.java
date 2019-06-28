@@ -1,6 +1,7 @@
 package com.canon.jdbc.builder;
 
 import com.canon.jdbc.ActionEnum;
+import com.canon.jdbc.utils.SqlUtil;
 
 import java.util.Map;
 
@@ -15,7 +16,7 @@ public class SelectBuilder extends SqlBuilder {
     @Override
     public Sql build(Class clazz, Map<String, Object> param) {
         String sql = getDefaultSql(clazz);
-        String fields = getAllField(clazz);
+        String fields = SqlUtil.getAllField(clazz);
         sql = sql.replaceAll(field,fields);
         StringBuffer sb = new StringBuffer(where);
         Object[] params = new Object[param.size()];
