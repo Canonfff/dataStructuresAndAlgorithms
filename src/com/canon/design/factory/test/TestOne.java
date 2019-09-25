@@ -8,6 +8,9 @@ package com.canon.design.factory.test;
  */
 public class TestOne {
 
+    /**
+     * 一个猴子每天吃一半加一根香蕉,第九天还剩下3根;问猴子原来一共有多少香蕉
+     */
     private static int count = 8;
 
     public static void main(String[] args) {
