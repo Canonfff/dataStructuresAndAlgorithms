@@ -2,6 +2,8 @@ package com.canon.base.class_three;
 
 import com.canon.base.class_four.TestOne;
 
+import java.util.ServiceLoader;
+
 /**
  * @program: dataStructuresAndAlgorithms
  * @Auther: canon
@@ -19,9 +21,16 @@ public class TestTen {
     }
 
 
-    public static void main(String[] args) {
-        Bean bean = initBean(new Bean());
-        System.out.println(bean);
+    public static void main(String[] args) throws Exception {
+        //Bean bean = initBean(new Bean());
+        // System.out.println(bean);
+        ServiceLoader<BeanInterface> interfaces = ServiceLoader.load(BeanInterface.class, TestTen.class.getClassLoader());
+//        Class<?> clazz = Class.forName("com.canon.base.class_three.Bean", false, TestTen.class.getClassLoader());
+//        Object o = clazz.newInstance();
+//        System.out.println(o);
+        for (BeanInterface anInterface : interfaces) {
+            System.out.println(anInterface);
+        }
     }
 
     /**
@@ -52,7 +61,7 @@ public class TestTen {
 
 }
 
-class Bean {
+class Bean implements BeanInterface {
     private String name;
 
     private String nickName;
@@ -98,4 +107,22 @@ class Bean {
     public void setPassword(String password) {
         this.password = password;
     }
+}
+
+
+class Bean2 implements BeanInterface {
+    private String feild1;
+
+    public String getFeild1() {
+        return feild1;
+    }
+
+    public void setFeild1(String feild1) {
+        this.feild1 = feild1;
+    }
+}
+
+
+interface BeanInterface {
+
 }

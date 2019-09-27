@@ -1,10 +1,12 @@
 package com.canon.base.class_one;
 
+import com.canon.base.class_three.TestTen;
+
 public class TestFour {
 
-    public static void main(String[] args) {
-        get(3);
-    }
+//    public static void main(String[] args) {
+//        get(3);
+//    }
     public static void get(int n) {
         switch (n) {
             case 1 :
@@ -32,5 +34,11 @@ public class TestFour {
             default:
                 break;
         }
+    }
+
+    public static void main(String[] args) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
+        Class<?> clazz = Class.forName("com.canon.base.class_three.Bean", true, TestTen.class.getClassLoader());
+        Object o = clazz.newInstance();
+
     }
 }

@@ -12,22 +12,22 @@ import static java.lang.Math.max;
  * @Description:
  */
 public class TestThree {
-    public static void main(String[] args) {
-        Map<String, Object> map = new HashMap<String, Object>();
-        map.put("aaa", null);
-        map.put("bbb", "aaa");
-        map.put("ccc", null);
-
-        check : {
-            for (Map.Entry<String, Object> entry : map.entrySet()) {
-                if (entry.getValue() == null) {
-                    break check;
-                }
-            }
-            System.out.println("没有问题");
-        }
-        System.out.println("有问题");
-    }
+//    public static void main(String[] args) {
+//        Map<String, Object> map = new HashMap<String, Object>();
+//        map.put("aaa", null);
+//        map.put("bbb", "aaa");
+//        map.put("ccc", null);
+//
+//        check : {
+//            for (Map.Entry<String, Object> entry : map.entrySet()) {
+//                if (entry.getValue() == null) {
+//                    break check;
+//                }
+//            }
+//            System.out.println("没有问题");
+//        }
+//        System.out.println("有问题");
+//    }
 
     /**
      * 测试静态导包
@@ -35,5 +35,12 @@ public class TestThree {
     private void demo01() {
         int num1 = 1, num2 = 2;
         int max = max(1,2);
+    }
+
+
+    public static void main(String[] args) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
+        Class<?> clazz = Class.forName("com.canon.base.class_three.Bean");
+        Object o = clazz.newInstance();
+
     }
 }
