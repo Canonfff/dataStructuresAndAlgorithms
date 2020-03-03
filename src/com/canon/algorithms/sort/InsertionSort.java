@@ -31,6 +31,12 @@ public class InsertionSort extends AbstractSort {
     @Override
     public int[] sort(int[] arr) {
         checkArray(arr);
+        /*
+            每次外层循环的时候,将选取一位作为比较的基准值
+            内层循环里面将确定此基准在所选择的位数里面的排序位置;
+            经过一次外层循环,基准值前面的所有数字都已经排列完成
+            所以经过全部外层循环,所有的数字都会排列完成
+         */
         int temp;
         for (int i = 1; i < arr.length; i++) {
             temp = arr[i];
