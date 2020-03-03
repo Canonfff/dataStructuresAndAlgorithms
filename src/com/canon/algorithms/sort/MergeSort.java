@@ -7,7 +7,7 @@ import java.util.Arrays;
  * @Package: com.canon.algorithms.sort
  * @ClassName: MergeSort
  * @Author: Canon
- * @Description:
+ * @Description:归并排序
  * @Date: 2020/3/3 12:36
  * @Version: 1.0
  */
@@ -16,11 +16,20 @@ public class MergeSort extends AbstractSort {
         superMain(new MergeSort());
     }
 
+    /**
+     * 归并排序的逻辑
+     * 其实相对来说,归并排序的逻辑比希尔排序更加简单一些
+     * 归并排序就是空间换时间
+     * 将数组拆成最小单元,也就只有一个的情况下;
+     * 将数组进行排序;然后将数组重新组合起来;
+     * 也就是将数组打散再将数组进行重新组合
+     * @param sourceArray
+     * @return
+     */
     @Override
-    public int[] sort(int[] sourceArray) {
+    public int[] sort(int[] arr) {
         // 对 arr 进行拷贝，不改变参数内容
-        int[] arr = Arrays.copyOf(sourceArray, sourceArray.length);
-
+        checkArray(arr);
         if (arr.length < 2) {
             return arr;
         }
