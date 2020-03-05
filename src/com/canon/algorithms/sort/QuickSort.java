@@ -21,6 +21,8 @@ public class QuickSort extends AbstractSort {
      * 首先是找一个切入点(基准值)
      * 这个基准值选择的对象是数组的第一个元素,
      * 比基准大都移到右边,
+     * 这里使用了分治的思想
+     *
      * @param arr
      * @return
      */
@@ -51,7 +53,6 @@ public class QuickSort extends AbstractSort {
             }
         }
         swap(arr, pivot, index - 1);
-        System.out.println(Arrays.toString(arr));
         return index - 1;
     }
 
