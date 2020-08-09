@@ -9,6 +9,7 @@ package com.canon.base.class_four;
  */
 public class TestFour {
     // 1000 10
+    // 10,110,111,1110,1010,1011,1111
     public static void main(String[] args) {
         int b = 0;
         int c = 0;
@@ -23,5 +24,11 @@ public class TestFour {
         a = (b & 2) == 1;
         System.out.println(c);
         System.out.println(a);
+
+        for (int i = 0; i < 16; i++) {
+            if ((i & 2) == 2) {
+                System.out.println(i);
+            }
+        }
     }
 }
