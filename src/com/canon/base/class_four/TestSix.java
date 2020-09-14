@@ -67,7 +67,7 @@ public class TestSix {
 
 
     public static void main(String[] args) throws UnsupportedEncodingException {
-        String str = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><Trade><Head><Version>1.0</Version><TimeStamp>20200813155703156</TimeStamp><SequenceId>001</SequenceId><DeviceNo>AZJ001</DeviceNo><TransactionCode>V_HEART_BEAT</TransactionCode></Head><Body><Body><NodeName>master</NodeName></Body></Body></Trade>";
+        String str = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><Trade><Head><Version>1.0</Version><TimeStamp>20200813155703156</TimeStamp><SequenceId>001</SequenceId><DeviceNo>AZJ001</DeviceNo><TransactionCode>INIT_TERMINAL</TransactionCode></Head><Body><Body><NodeName>master</NodeName></Body></Body></Trade>";
         String result = "";
         for (char c : str.toCharArray()) {
             result += Integer.toBinaryString(c);

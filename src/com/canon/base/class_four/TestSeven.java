@@ -16,9 +16,20 @@ public class TestSeven {
         protected boolean removeEldestEntry(Map.Entry<String, String> eldest) {
             if (size() > getCacheLimit()) {
                 return true;
-            } else {
-                return super.removeEldestEntry(eldest);
             }
+            return super.removeEldestEntry(eldest);
+
+        }
+    };
+
+    private static Map<String, String> cache = new LinkedHashMap<String, String>(5, 0.75f, true) {
+        @Override
+        protected boolean removeEldestEntry(Map.Entry<String, String> eldest) {
+            if (size() > getCacheLimit()) {
+                return true;
+            }
+            return super.removeEldestEntry(eldest);
+
         }
     };
     public static void main(String[] args) {
