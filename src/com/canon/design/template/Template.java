@@ -1,6 +1,5 @@
 package com.canon.design.template;
 
-import javax.annotation.PostConstruct;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -37,7 +36,6 @@ public class Template {
 
 
 
-    @PostConstruct
     public void init() {
         strategys = new ConcurrentHashMap<Integer, Strategy>();
         strategys.put(1, () -> fn1());

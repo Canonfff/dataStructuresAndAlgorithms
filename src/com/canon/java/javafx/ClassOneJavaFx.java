@@ -1,10 +1,13 @@
-package com.canon.java.javafx;/**
+/*
+package com.canon.java.javafx;*/
+/**
  * @Author Canon
  * @Date:Created in 13:00 2020/8/8
  * @Modify By: canon
  * @Despricction:
  * @since 1.0
- */
+ *//*
+
 
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -26,3 +29,4 @@ public class ClassOneJavaFx extends Application {
         primaryStage.show();  // Display the stage
     }
 }
+*/
